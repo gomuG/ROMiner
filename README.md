@@ -3,7 +3,7 @@ GUI tool to extract files from Ragnarok Mobile Eternal Love
 
 Download link here: https://github.com/gomuG/ROMiner/releases
 
-Reach out to me @ Gomu#4730
+Reach out to me @ Gomu#4730 on discord
 
 ## Description
 This tool streamlines the process, from download patch files to extracting to readable formats.
