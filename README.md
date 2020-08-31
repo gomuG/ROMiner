@@ -28,13 +28,14 @@ This tool streamlines the process, from download patch files to extracting to re
 3. Tick the checkbox beside it. The ID will be validated and will untick if its invalid.
 4. Tick 2, and 3 as well
 5. Press Extract
-![Get your own patch ID](https://github.com/gomuG/ROMiner/blob/master/Example.PNG)
+
+[Get your own patch ID](https://github.com/gomuG/ROMiner/blob/master/Example.PNG)
 
 
 ## TODO
- [ ] Remove dependency on JRE (Maybe some portable JRE or just package the java files together)
- [ ] Improve on UI
- [ ] Detect and strip Lua tables in files
- [ ] Convert Tables to JSON
- [ ] Convert Tables to CSV
- [ ] Automatic diff with original files
+- [ ] Remove dependency on JRE (Maybe some portable JRE or just package the java files together)
+- [ ] Improve on UI
+- [ ] Detect and strip Lua tables in files
+- [ ] Convert Tables to JSON
+- [ ] Convert Tables to CSV
+- [ ] Automatic diff with original files
