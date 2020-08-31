@@ -14,15 +14,18 @@ This tool streamlines the process, from download patch files to extracting to re
   - See https://gitlab.com/_rom/unluac for decompiling method
 
 
-## Setup environments
+## Getting started
 1. Java SE RunTime Environment(JRE) 13.0.2 required
 
 ## Instruction
 - Each functionality can be used as a standalone. Just click the checkbox and click extract button
+- Downloaded/Extracted files can be found in an output folder with date and time suffix to prevent duplication
 
 ### Instruction on how to download with patch id and extract files
 1. Enter Patch ID e.g "52345_55512" and select the server for the patch.
 2. Tick the checkbox beside it. The ID will be validated and will untick if its invalid.
+3. Tick 2, and 3 as well
+4. Press Extract
 
 
 ## TODO
