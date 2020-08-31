@@ -1,5 +1,7 @@
 # ROMiner
 GUI tool to extract files from Ragnarok Mobile Eternal Love
+Download link here: https://github.com/gomuG/ROMiner/releases
+Reach out to me @ Gomu#4730
 
 ## Description
 This tool streamlines the process, from download patch files to extracting to readable formats.
@@ -39,3 +41,5 @@ This tool streamlines the process, from download patch files to extracting to re
 - [ ] Convert Tables to JSON
 - [ ] Convert Tables to CSV
 - [ ] Automatic diff with original files
+
+
