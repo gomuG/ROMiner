@@ -29,7 +29,7 @@ This tool streamlines the process, from download patch files to extracting to re
 4. Tick 2, and 3 as well
 5. Press Extract
 
-[Get your own patch ID](https://github.com/gomuG/ROMiner/blob/master/Example.PNG)
+![Get your own patch ID](https://github.com/gomuG/ROMiner/blob/master/Example.PNG)
 
 
 ## TODO
