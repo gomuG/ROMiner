@@ -2,3 +2,11 @@
 .vscode/settings.json
 *.pyc
 *.lua
+*.toc
+build/ROMiner/xref-ROMiner.html
+build/ROMiner/warn-ROMiner.txt
+build/ROMiner/ROMiner.exe.manifest
+build/ROMiner/PYZ-00.pyz
+build/ROMiner/PKG-00.pkg
+build/ROMiner/base_library.zip
+dist/ROMiner.zip
