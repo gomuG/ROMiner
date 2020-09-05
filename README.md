@@ -37,11 +37,15 @@ This tool streamlines the process, from download patch files to extracting to re
 
 
 ## TODO
-- [ ] Remove dependency on JRE (Maybe some portable JRE or just package the java files together)
-- [ ] Improve on UI
 - [ ] Detect and strip Lua tables in files
 - [ ] Convert Tables to JSON
 - [ ] Convert Tables to CSV
 - [ ] Automatic diff with original files
 
-
+## Changelog
+### 1.1
+- Added validation to the process for QOL(Must unpack unity file before decrypting)
+- Allow unpacking of obb on top of apk
+- Improved UI for checkbox
+### 1.0
+- Initial Commit

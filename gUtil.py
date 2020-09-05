@@ -27,12 +27,15 @@ import tempfile
 # Unity Unpacker/Extractor
 from UnityPy import AssetsManager
 from collections import Counter
-import zipfile
 # https://github.com/K0lb3/UnityPy
 # https://github.com/K0lb3/UnityPy/blob/master/AssetBatchConverter.py
 
 TYPES = ['TextAsset','Sprite', 'Texture2D', 'MonoScript','MonoBehaviour']
 IGNOR_DIR_COUNT = 2
+
+# Convert lua table to json
+# https://github.com/SirAnthony/slpp
+from slpp import slpp as lua
 
 
 
@@ -59,7 +62,7 @@ def ValidateJava():
         proc = subprocess.Popen('java -version', stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         result = proc.stdout.read().decode('utf-8')
         if "command not found" not in result:
-            logger.info(result)
+            logger.info("Located JRE \n"+result)
         else:
             logger.error("Java Runtime Environment (JRE) is required to decrypt the byte files.")
     except:
@@ -107,7 +110,17 @@ def UnloadZip(p_zipFilePath:str, p_outputPath:str):
 
 
 
-def UnloadAPK(p_apkFilePath : str, p_outputPath:str) -> str:
+def UnloadAPK(p_apkFilePath : str, p_outputPath:str) -> bool:
+    hasAPK:bool = False
+    obbPath = ""
+
+    if "apk" in p_apkFilePath:
+        hasAPK = True
+    elif not "obb" in p_apkFilePath:
+        logger.error("No valid apk or obb file selected")
+        return False
+
+
     # create a copy of the apk to tmp folder
     fileDir, fileName = os.path.split(p_apkFilePath)            # split folder and file name
     CopyFile(fileDir, p_outputPath,fileName)                    # Copy file to output
@@ -118,27 +131,36 @@ def UnloadAPK(p_apkFilePath : str, p_outputPath:str) -> str:
     newApkFilePath = apkfilename +".zip"
     apkExtractedFolder = os.path.join(p_outputPath, apkfilename)
 
-    # extract zip
-    logger.info("Beginning extraction of raw apk")
-    with zipfile.ZipFile(newApkFilePath) as zf:
-        zf.extractall(apkExtractedFolder)
-        
-    logger.info("Extracting Obb")
-    obbPath = ""
-    for path in Path(p_outputPath).rglob('*.obb'):
-        obbPath = path
-        break
-    # Rename obb to zip
-    filepath,ext = os.path.splitext(obbPath)
-    os.rename(obbPath, filepath +".zip" )
-    obbFilePath = filepath +".zip"
-    with zipfile.ZipFile(obbFilePath) as zf:
+    if hasAPK:
+        # extract apk zip
+        logger.info("Beginning extraction of raw apk")
+        with zipfile.ZipFile(newApkFilePath) as zf:
+            zf.extractall(apkExtractedFolder)
+        logger.info("Completed APK extraction")
+    else:
+        obbPath = newApkFilePath
+
+    if not obbPath:
+        for path in Path(p_outputPath).rglob('*.obb'):
+            obbPath = path
+            break
+
+        # Rename obb to zip
+        filepath,ext = os.path.splitext(obbPath)
+        os.rename(obbPath, filepath +".zip" )
+        obbPath = obbPath + filepath +".zip"
+
+    logger.info("Extracting obb")
+    with zipfile.ZipFile(obbPath) as zf:
         zf.extractall(p_outputPath)
-    logger.info("Completed extraction")
+    logger.info("Completed obb extraction")
 
     # Cleanup copied apk file and folder after obb extraction
-    os.remove(newApkFilePath)
-    shutil.rmtree(apkExtractedFolder)
+    if hasAPK:
+        os.remove(newApkFilePath)
+        shutil.rmtree(apkExtractedFolder)
+
+    return True
 
 def GetUnityFiles(p_folderPath :str) ->list:
     fileList : list = []
@@ -172,7 +194,6 @@ def CopyFile(p_src:str, p_dst:str, p_fileName:str):
         shutil.copy(p_src+"/"+p_fileName,p_dst)
         logger.info("Succesfully copied %s to %s" %(p_fileName, p_dst))
         return p_dst+"/"+p_fileName
-    
 #end of CopyFile
 
 

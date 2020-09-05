@@ -10,3 +10,6 @@ build/ROMiner/PYZ-00.pyz
 build/ROMiner/PKG-00.pkg
 build/ROMiner/base_library.zip
 dist/ROMiner.zip
+ROMiner.spec
+dist/unluac.jar
+sandbox.py
